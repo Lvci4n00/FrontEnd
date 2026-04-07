@@ -204,3 +204,12 @@ button:active{
 @media (max-width: 480px){
   .site-nav{ gap: .35rem .6rem; }
 }
+
+/* Separadores entre secciones (utilidad) */
+.spacer{
+  height: 20px;
+}
+
+@media (max-width: 480px){
+  .spacer{ height: 12px; }
+}
