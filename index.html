@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Hardware Hub: venta de hardware, catálogo y ofertas. GPUs y procesadores a buen precio." />
-  <title>Hardware Hub | Venta de Hardware</title>
+  <title>Hardware Hub | Venta de Hardware 2026</title>
   <link rel="icon" type="image/x-icon" href="images/ICONO.ico" />
   <link rel="stylesheet" href="Css/styles.css" />
 </head>
-<!--algo ya hola que tal-->
+<!--hola me llamo luciano castillo -->
 
 <body>
   <header class="site-header">
@@ -21,12 +21,32 @@
         <a href="#ofertas">Ofertas</a>
         <a href="#contacto">Contacto</a>
       </nav>
+      <div class="auth-actions">
+        <a class="btn auth-btn" href="#login">Iniciar sesión</a>
+        <a class="btn auth-btn" href="#register">Registrarse</a>
+        <a class="btn auth-btn" href="#contactForm">Contactar</a>
+      </div>
     </div>
   </header>
 
   <main id="main" class="container">
     <section id="inicio" class="section">
       <h2>Bienvenido a Hardware Hub</h2>
+      <!-- Carrusel de productos -->
+      <div class="hero-carousel" aria-roledescription="carousel" aria-label="PCs armados destacados">
+        <div class="carousel-track">
+          <a class="carousel-slide" href="#o1-title">
+            <img src="images/PC Gamer 1.png" onerror="this.onerror=null;this.src='images/PC1.png'" width="1000" height="562" alt="PC Gamer 1" loading="lazy" />
+          </a>
+          <a class="carousel-slide" href="#o2-title">
+            <img src="images/PC Gamer 2.png" onerror="this.onerror=null;this.src='images/PC2.png'" width="1000" height="562" alt="PC Gamer 2" loading="lazy" />
+          </a>
+          <a class="carousel-slide" href="#o3-title">
+            <img src="images/PC Gamer 3.png" onerror="this.onerror=null;this.src='images/PC3.png'" width="1000" height="562" alt="PC Gamer 3" loading="lazy" />
+          </a>
+        </div>
+      </div>
+
       <p>Tu página confiable de componentes para computadora: en Hardware Hub ofrecemos una selección curada de piezas nuevas y reacondicionadas, guías de compatibilidad, comparativas y soporte técnico experto para ayudarte a elegir la mejor configuración según tu uso. Encuentra las mejores ofertas, reseñas de producto y asesoría para armar, actualizar o optimizar tu equipo.</p>
     </section>
 
@@ -261,15 +281,48 @@
 
     <div class="spacer" style="height:20px;"></div>
 
-    <section id="contacto" class="section contact">
+      <div class="footer-auth-forms">
+        <section id="register" class="footer-form register-form" aria-labelledby="register-title">
+          <h3 id="register-title">Registrarse</h3>
+          <form id="registerForm">
+            <label for="reg-name">Nombre</label>
+            <input id="reg-name" name="name" type="text" required />
+
+            <label for="reg-email">Correo</label>
+            <input id="reg-email" name="email" type="email" required />
+
+            <label for="reg-password">Contraseña</label>
+            <input id="reg-password" name="password" type="password" required />
+
+            <label for="reg-password-confirm">Confirmar contraseña</label>
+            <input id="reg-password-confirm" name="passwordConfirm" type="password" required />
+
+            <button type="submit" class="btn">Crear cuenta</button>
+            <p id="registerMsg" class="form-msg" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section id="login" class="footer-form login-form" aria-labelledby="login-title">
+          <h3 id="login-title">Iniciar sesión</h3>
+          <form id="loginForm">
+            <label for="login-email">Correo</label>
+            <input id="login-email" name="email" type="email" required />
+
+            <label for="login-password">Contraseña</label>
+            <input id="login-password" name="password" type="password" required />
+
+            <button type="submit" class="btn">Entrar</button>
+            <p id="loginMsg" class="form-msg" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+ <section id="contacto" class="section contact">
       <header class="section-header">
         <h2>Contacto</h2>
       </header>
-      <p>Teléfono: <a href="tel:+123456789">+1 234 567 89</a></p>
-      <p>Dirección: Calle Falsa 123, Ciudad Ejemplo</p>
-      <p>Correo: <a href="mailto:info@hardwarehub.example">info@hardwarehub.example</a></p>
-    </section>
-  </main>
 
   <footer class="site-footer">
     <hr />
@@ -286,7 +339,31 @@
 
       <p>Teléfono: <a href="tel:+123456789">+1 234 567 89</a></p>
       <p>Dirección: Calle Falsa 123, Ciudad Ejemplo</p>
+      <p>Correo: <a href="mailto:info@hardwarehub.example">info@hardwarehub.example</a></p>
+
+      <div class="footer-auth-forms">
+        <form id="contactForm" class="contact-form" aria-labelledby="contact-form-title">
+          <h3 id="contact-form-title">Envíanos un mensaje</h3>
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+
+          <label for="subject">Asunto</label>
+          <input type="text" id="subject" name="subject" placeholder="Asunto del mensaje" required />
+
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+          <button type="submit" class="btn">Enviar mensaje</button>
+          <p id="contactSuccess" class="contact-success" role="status" aria-live="polite" hidden>Mensaje guardado correctamente.</p>
+        </form>
+      </div>
     </div>
   </footer>
+  <script src="js/contact.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/carousel.js"></script>
 </body>
 </html>
