@@ -1,0 +1,11 @@
+{
+  "name": "hardwarehub-image-cropper",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "crop": "node scripts/crop.js"
+  },
+  "dependencies": {
+    "sharp": "^0.31.3"
+  }
+}

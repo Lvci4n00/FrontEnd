@@ -8,20 +8,32 @@ document.addEventListener('DOMContentLoaded', function () {
   let intervalId = null;
 
   function update() {
-    const percent = -index * 100;
-    track.style.transform = `translateX(${percent}%)`;
+    const offset = -index * carousel.clientWidth;
+    track.style.transform = `translateX(${offset}px)`;
   }
 
   function next() { index = (index + 1) % slides.length; update(); }
 
   function startInterval() {
     clearInterval(intervalId);
-    intervalId = setInterval(next, 2000);
+    intervalId = setInterval(next, 2000); // advance every 2s
   }
 
-  // set widths for track and slides
-  track.style.width = `${slides.length * 100}%`;
-  slides.forEach(slide => { slide.style.width = `${100 / slides.length}%`; });
+  // pause on hover/touch to improve UX
+  carousel.addEventListener('mouseenter', () => { clearInterval(intervalId); });
+  carousel.addEventListener('mouseleave', () => { startInterval(); });
+  carousel.addEventListener('touchstart', () => { clearInterval(intervalId); });
+  carousel.addEventListener('touchend', () => { startInterval(); });
+
+  // set widths for track and slides based on carousel pixel width
+  function setSizes(){
+    const w = carousel.clientWidth;
+    track.style.width = `${w * slides.length}px`;
+    slides.forEach(slide => { slide.style.width = `${w}px`; });
+  }
+
+  setSizes();
+  window.addEventListener('resize', () => { setSizes(); update(); });
 
   update();
   startInterval();

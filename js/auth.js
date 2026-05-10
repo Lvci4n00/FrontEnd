@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const loginMsg = document.getElementById('loginMsg');
 
   const USERS_KEY = 'users';
+  const userMessageEl = document.getElementById('userMessage');
+  const authActions = document.querySelector('.auth-actions');
+  const registerSection = document.getElementById('register');
+  const loginSection = document.getElementById('login');
+  const logoutBtn = document.getElementById('logoutBtn');
   function loadUsers() {
     try { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
     catch (e) { return []; }
@@ -48,6 +53,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function updateAuthUI() {
+    try {
+      const current = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      if (current) {
+        if (authActions) authActions.style.display = 'none';
+        if (registerSection) registerSection.style.display = 'none';
+        if (loginSection) loginSection.style.display = 'none';
+        if (userMessageEl) userMessageEl.textContent = `Bienvenido, ${current.name}`;
+        if (logoutBtn) { logoutBtn.style.display = ''; }
+      } else {
+        if (authActions) authActions.style.display = '';
+        if (registerSection) registerSection.style.display = '';
+        if (loginSection) loginSection.style.display = '';
+        if (userMessageEl) userMessageEl.textContent = '';
+        if (logoutBtn) { logoutBtn.style.display = 'none'; }
+      }
+    } catch (e) { console.error('updateAuthUI error', e); }
+  }
+
   if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -66,8 +90,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
       loginMsg.textContent = 'Ingreso exitoso.'; loginMsg.style.color = 'var(--primary)';
       loginForm.reset();
+      updateAuthUI();
       setTimeout(() => { loginMsg.textContent = ''; }, 3000);
       console.log('User logged in', session);
     });
   }
+
+  // Logout handler
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+      localStorage.removeItem('currentUser');
+      updateAuthUI();
+      console.log('User logged out');
+    });
+  }
+
+  // Run once on load to set initial UI state
+  updateAuthUI();
 });

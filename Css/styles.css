@@ -280,31 +280,53 @@ button:active{
   border-radius: 10px;
   background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
   border: 1px solid var(--border);
+  width: 100%;
+  max-width: 2048px; /* target carousel width */
+  margin-inline: auto;
+  aspect-ratio: 2/1; /* 2048x1024 -> 2:1 */
+  max-height: 70vh; /* prevent excessive height on narrow viewports */
 }
 .hero-carousel .carousel-track{
   display: flex;
   transition: transform 400ms ease;
   will-change: transform;
+  height: 100%;
+  align-items: center;
 }
 .hero-carousel .carousel-slide{
-  display: block;
-  flex: 0 0 100%;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; 
+  padding: 0;
+  height: 100%;
 }
 .hero-carousel .carousel-slide img{
   width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
+  height: auto;       /* preserve intrinsic aspect ratio */
+  max-height: 100%;   /* never exceed container height */
+  object-fit: contain; /* show full image when aspect differs */
+  object-position: center center;
   border-radius: 8px;
   display:block;
-  height: auto; /* let browser calculate based on aspect-ratio */
 }
 .hero-carousel .carousel-btn{ display:none; }
 .hero-carousel .carousel-indicators{ display:none; }
 
 @media (min-width:900px){
-  .hero-carousel { max-height: 420px; }
-  .hero-carousel .carousel-slide img{ aspect-ratio:16/9; }
+  /* keep a larger max width on wide screens */
+  .hero-carousel { max-width: 2048px; }
+  .hero-carousel .carousel-slide{ padding: 6px; }
+}
+
+@media (max-width:720px){
+  /* ensure the carousel doesn't dominate very small screens */
+  .hero-carousel{ max-height: 50vh; }
+}
+
+@media (max-width:600px){
+  /* slightly reduce vertical footprint on narrow viewports */
+  .hero-carousel{ aspect-ratio: 16/9; }
 }
 
 /* Smooth scroll when clicking anchors */

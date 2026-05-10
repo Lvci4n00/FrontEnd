@@ -26,23 +26,25 @@
         <a class="btn auth-btn" href="#register">Registrarse</a>
         <a class="btn auth-btn" href="#contactForm">Contactar</a>
       </div>
+      <button id="logoutBtn" class="btn" style="display:none; margin-left:.5rem;">Cerrar sesión</button>
     </div>
   </header>
 
   <main id="main" class="container">
     <section id="inicio" class="section">
+      <div id="userMessage" class="user-message" aria-live="polite"></div>
       <h2>Bienvenido a Hardware Hub</h2>
       <!-- Carrusel de productos -->
       <div class="hero-carousel" aria-roledescription="carousel" aria-label="PCs armados destacados">
         <div class="carousel-track">
           <a class="carousel-slide" href="#o1-title">
-            <img src="images/PC Gamer 1.png" onerror="this.onerror=null;this.src='images/PC1.png'" width="1000" height="562" alt="PC Gamer 1" loading="lazy" />
+            <img src="images/primera-imagen-carrusel.png" alt="Primera imagen carrusel" loading="lazy" />
           </a>
           <a class="carousel-slide" href="#o2-title">
-            <img src="images/PC Gamer 2.png" onerror="this.onerror=null;this.src='images/PC2.png'" width="1000" height="562" alt="PC Gamer 2" loading="lazy" />
+            <img src="images/segunda-imagen-carrusel.png" alt="Segunda imagen carrusel" loading="lazy" />
           </a>
           <a class="carousel-slide" href="#o3-title">
-            <img src="images/PC Gamer 3.png" onerror="this.onerror=null;this.src='images/PC3.png'" width="1000" height="562" alt="PC Gamer 3" loading="lazy" />
+            <img src="images/tercera-imagen-carrusel.png" alt="Tercera imagen carrusel" loading="lazy" />
           </a>
         </div>
       </div>
@@ -365,5 +367,7 @@
   <script src="js/contact.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/carousel.js"></script>
+  <script src="js/carousel-debug.js"></script>
+  <script src="js/images-fallback.js"></script>
 </body>
 </html>
